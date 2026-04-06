@@ -6,7 +6,6 @@ import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import { SearchProvider } from "@/components/SearchProvider";
 import { ThemeProvider, themeScript } from "@/components/ThemeProvider";
-import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const notoEthiopic = Noto_Sans_Ethiopic({
@@ -36,7 +35,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-surface text-white min-h-screen">
         <ThemeProvider>
-          <ServiceWorkerRegister />
           <SearchProvider>
             <Navbar />
             <main className="pt-16 pb-mobile">{children}</main>
