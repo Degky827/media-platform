@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useSearch } from "./SearchProvider";
-import VideoCard from "./VideoCard";
-import type { VideoItem } from "@/lib/youtube";
-import type { SortOption } from "./SearchProvider";
+import { useSearch } from './SearchProvider';
+import VideoCard from './VideoCard';
+import type { VideoItem } from '@/lib/youtube';
+import type { SortOption } from './SearchProvider';
 
 const SORT_LABELS: Record<SortOption, string> = {
-  newest: "Newest",
-  oldest: "Oldest",
-  popular: "Most Viewed",
+  newest: 'Newest',
+  oldest: 'Oldest',
+  popular: 'Most Viewed',
 };
 
 export default function VideoGridClient({ videos }: { videos: VideoItem[] }) {
@@ -26,22 +26,28 @@ export default function VideoGridClient({ videos }: { videos: VideoItem[] }) {
             className="px-3 py-1.5 rounded-full text-xs font-semibold transition-colors"
             style={
               sort === opt
-                ? { backgroundColor: "#e53935", color: "#fff" }
-                : { backgroundColor: "var(--bg-3)", color: "var(--fg-50)" }
+                ? { backgroundColor: '#e53935', color: '#fff' }
+                : { backgroundColor: 'var(--bg-3)', color: 'var(--fg-50)' }
             }
           >
             {SORT_LABELS[opt]}
           </button>
         ))}
-        <span className="ml-auto text-sm" style={{ color: "var(--fg-30)" }}>
-          {filtered.length} video{filtered.length !== 1 ? "s" : ""}
+        <span className="ml-auto text-sm" style={{ color: 'var(--fg-30)' }}>
+          {filtered.length} video{filtered.length !== 1 ? 's' : ''}
         </span>
       </div>
 
       {/* Empty state */}
       {filtered.length === 0 && (
-        <div className="text-center py-20" style={{ color: "var(--fg-30)" }}>
-          <svg className="w-12 h-12 mx-auto mb-3 opacity-30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <div className="text-center py-20" style={{ color: 'var(--fg-30)' }}>
+          <svg
+            className="w-12 h-12 mx-auto mb-3 opacity-30"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.35-4.35" />
           </svg>

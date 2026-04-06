@@ -1,18 +1,15 @@
-import { getVideoById, getChannelVideos } from "@/lib/youtube";
-import TheaterPlayer from "@/components/TheaterPlayer";
-import VideoMeta from "@/components/VideoMeta";
-import VideoCard from "@/components/VideoCard";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import { getVideoById, getChannelVideos } from '@/lib/youtube';
+import TheaterPlayer from '@/components/TheaterPlayer';
+import VideoMeta from '@/components/VideoMeta';
+import VideoCard from '@/components/VideoCard';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 export const revalidate = 3600;
 
 export default async function WatchPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const [video, related] = await Promise.all([
-    getVideoById(id),
-    getChannelVideos(9),
-  ]);
+  const [video, related] = await Promise.all([getVideoById(id), getChannelVideos(9)]);
 
   if (!video) return notFound();
 
@@ -30,9 +27,16 @@ export default async function WatchPage({ params }: { params: Promise<{ id: stri
           <Link
             href="/"
             className="group inline-flex items-center gap-2 mt-6 text-sm transition-all duration-200 hover:text-red-500"
-            style={{ color: "var(--fg)" }}
+            style={{ color: 'var(--fg)' }}
           >
-            <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
               <path d="m15 18-6-6 6-6" />
             </svg>
             Back to all videos
@@ -41,7 +45,12 @@ export default async function WatchPage({ params }: { params: Promise<{ id: stri
 
         {/* Sidebar */}
         <aside className="xl:w-96 shrink-0">
-          <h2 className="text-base font-semibold mb-4 uppercase tracking-wider" style={{ color: "var(--fg-60)" }}>More Videos</h2>
+          <h2
+            className="text-base font-semibold mb-4 uppercase tracking-wider"
+            style={{ color: 'var(--fg-60)' }}
+          >
+            More Videos
+          </h2>
           <div className="flex flex-col gap-4">
             {others.map((v) => (
               <VideoCard key={v.id} video={v} />

@@ -1,27 +1,35 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useTheme } from "./ThemeProvider";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useTheme } from './ThemeProvider';
 
 export default function BottomNav() {
   const pathname = usePathname();
   const { theme, toggle } = useTheme();
 
-  const isHome = pathname === "/";
+  const isHome = pathname === '/';
 
   return (
     <nav
       className="md:hidden fixed bottom-0 left-0 right-0 z-50 glass border-t border-glass-border flex items-center justify-around h-16 backdrop-blur-xl"
-      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <Link
         href="/"
         className="flex flex-col items-center gap-1 text-xs transition-all duration-200 hover:scale-105"
-        style={{ color: isHome ? "#e53935" : "var(--fg)", opacity: isHome ? 1 : 0.5 }}
+        style={{ color: isHome ? '#e53935' : 'var(--fg)', opacity: isHome ? 1 : 0.5 }}
       >
-        <div className={`p-1.5 rounded-xl transition-all ${isHome ? "bg-red-500/10" : ""}`}>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div className={`p-1.5 rounded-xl transition-all ${isHome ? 'bg-red-500/10' : ''}`}>
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
             <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
             <polyline points="9 22 9 12 15 12 15 22" />
           </svg>
@@ -34,7 +42,7 @@ export default function BottomNav() {
         target="_blank"
         rel="noopener noreferrer"
         className="flex flex-col items-center gap-1 text-xs transition-all duration-200 hover:scale-105"
-        style={{ color: "var(--fg)", opacity: 0.5 }}
+        style={{ color: 'var(--fg)', opacity: 0.5 }}
       >
         <div className="p-1.5 rounded-xl">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -47,25 +55,44 @@ export default function BottomNav() {
       <button
         onClick={toggle}
         aria-label="Toggle theme"
+        aria-pressed={theme === 'light'}
         className="flex flex-col items-center gap-1 text-xs transition-all duration-200 hover:scale-105"
-        style={{ color: "var(--fg)", opacity: 0.5 }}
+        style={{ color: 'var(--fg)', opacity: 0.5 }}
       >
         <div className="p-1.5 rounded-xl">
-          {theme === "dark" ? (
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          {theme === 'dark' ? (
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <circle cx="12" cy="12" r="5" />
-              <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
             </svg>
           ) : (
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
             </svg>
           )}
         </div>
-        <span className="font-medium">{theme === "dark" ? "Light" : "Dark"}</span>
+        <span className="font-medium">{theme === 'dark' ? 'Light' : 'Dark'}</span>
       </button>
     </nav>
   );
